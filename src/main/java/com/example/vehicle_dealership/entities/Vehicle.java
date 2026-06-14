@@ -9,6 +9,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Table(name = "vehicle")
 @AllArgsConstructor
@@ -56,4 +58,8 @@ public class Vehicle {
     @ManyToOne
     @JoinColumn(name = "dealership_id")
     private Dealerships dealership;
+
+    @OneToMany(mappedBy = "vehicle")
+    private List<Contract> contracts;
 }
+
