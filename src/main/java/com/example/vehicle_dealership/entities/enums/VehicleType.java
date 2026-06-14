@@ -1,4 +1,4 @@
-package com.example.vehicle_dealership.entities;
+package com.example.vehicle_dealership.entities.enums;
 
 public enum VehicleType {
     TRUCK,

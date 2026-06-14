@@ -1,5 +1,6 @@
 package com.example.vehicle_dealership.entities;
 
+import com.example.vehicle_dealership.entities.enums.VehicleType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
