@@ -63,6 +63,13 @@ public class VehicleService {
         return true;
     }
 
+    //by id
+    public Optional<Vehicle> byId(Long id){
+        var vehicle = vehicleRepository.findById(id);
+
+        return vehicle;
+    }
+
     //by price
     public List<Vehicle> byPrice(Double minPrice, Double maxPrice){
         List<Vehicle> vehicles = vehicleRepository.findByPriceBetween(minPrice, maxPrice);
