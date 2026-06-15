@@ -73,16 +73,14 @@ public class VehicleService {
 
     //by price
     public List<Vehicle> byPrice(Double minPrice, Double maxPrice){
-        List<Vehicle> vehicles = vehicleRepository.findByPriceBetween(minPrice, maxPrice);
+        return vehicleRepository.findByPriceBetween(minPrice, maxPrice);
 
-        return vehicles;
     }
 
     //by make
     public List<Vehicle> byMake(String make){
-        List<Vehicle> vehicles = vehicleRepository.findByMakeIgnoreCase(make);
+        return vehicleRepository.findByMakeIgnoreCase(make);
 
-        return vehicles;
     }
 
     //by model

@@ -1,6 +1,7 @@
 package com.example.vehicle_dealership.controllers;
 
 import com.example.vehicle_dealership.entities.Vehicle;
+import com.example.vehicle_dealership.entities.enums.VehicleType;
 import com.example.vehicle_dealership.services.VehicleService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/vehicles")
@@ -27,6 +29,7 @@ public class VehicleController {
 
         return new ResponseEntity<>(newVehicle, HttpStatus.CREATED);
     }
+
     //get all vehicles
     //confirmed
     @GetMapping
@@ -35,22 +38,24 @@ public class VehicleController {
 
         return new ResponseEntity<>(vehicles,HttpStatus.OK);
     }
+
     //put update vehicle
     @PutMapping("/{id}")
-    public ResponseEntity<Movie> updateMovie(@RequestBody @Valid Movie movie, @PathVariable Long id){
-        Movie updatedMovie = this.movieService.update(id,movie);
+    public ResponseEntity<Vehicle> updateVehicle(@RequestBody @Valid Vehicle vehicle, @PathVariable Long id){
+        Vehicle updatedVehicle = this.vehicleService.update(id,vehicle);
 
-        if(updatedMovie == null){
+        if(updatedVehicle == null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         else{
-            return new ResponseEntity<>(updatedMovie, HttpStatus.OK);
+            return new ResponseEntity<>(updatedVehicle, HttpStatus.OK);
         }
     }
+
     //delete by id
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteMovie(@PathVariable Long id){
-        Boolean deleteSuccessful = this.movieService.delete(id);
+    public ResponseEntity<Void> deleteVehicle(@PathVariable Long id){
+        Boolean deleteSuccessful = this.vehicleService.delete(id);
 
         if(!deleteSuccessful){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -60,67 +65,128 @@ public class VehicleController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
     }
-    //get by id
-    @GetMapping
-    public ResponseEntity<List<Vehicle>> getAllVehicles(){
-        List<Vehicle> vehicles = this.vehicleService.read();
 
-        return new ResponseEntity<>(vehicles,HttpStatus.OK);
+    //get by id
+    @GetMapping("/{id}")
+    public ResponseEntity<Vehicle> getVehicleById(@PathVariable Long id){
+        Optional<Vehicle> vehicle = this.vehicleService.byId(id);
+
+        //either there is a vehicle with this is or there is not
+        if(vehicle.isPresent()){
+            return new ResponseEntity<>(vehicle.get(), HttpStatus.OK);
+        }
+        else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
     }
+
     //get by price
     @GetMapping
-    public ResponseEntity<List<Vehicle>> getAllVehicles(){
-        List<Vehicle> vehicles = this.vehicleService.read();
+    public ResponseEntity<List<Vehicle>> getVehicleByPrice(@RequestParam( value = "minPrice",required = true) Double minPrice, @RequestParam(value = "maxPrice") Double maxPrice){
+        List<Vehicle> vehicle = this.vehicleService.byPrice(minPrice, maxPrice);
 
-        return new ResponseEntity<>(vehicles,HttpStatus.OK);
+        if(vehicle.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        else {
+            return new ResponseEntity<>(vehicle,HttpStatus.OK);
+        }
     }
+
     //get by make
     @GetMapping
-    public ResponseEntity<List<Vehicle>> getAllVehicles(){
-        List<Vehicle> vehicles = this.vehicleService.read();
+    public ResponseEntity<List<Vehicle>> getVehicleByMake (@RequestParam (value = "make")String make){
+        List<Vehicle> vehicle = this.vehicleService.byMake(make);
 
-        return new ResponseEntity<>(vehicles,HttpStatus.OK);
+        if(vehicle.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        else {
+            return new ResponseEntity<>(vehicle,HttpStatus.OK);
+        }
+
     }
+
     //get by model
     @GetMapping
-    public ResponseEntity<List<Vehicle>> getAllVehicles(){
-        List<Vehicle> vehicles = this.vehicleService.read();
+    public ResponseEntity<List<Vehicle>> getVehicleByModel (@RequestParam (value = "model")String model){
+        List<Vehicle> vehicle = this.vehicleService.byModel(model);
 
-        return new ResponseEntity<>(vehicles,HttpStatus.OK);
+        if(vehicle.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        else {
+            return new ResponseEntity<>(vehicle,HttpStatus.OK);
+        }
+
     }
     //get by year
     @GetMapping
-    public ResponseEntity<List<Vehicle>> getAllVehicles(){
-        List<Vehicle> vehicles = this.vehicleService.read();
+    public ResponseEntity<List<Vehicle>> getVehicleByYear(@RequestParam( value = "minYear",required = true) Integer minYear, @RequestParam(value = "maxYear") Integer maxYear){
+        List<Vehicle> vehicle = this.vehicleService.byYear(minYear, maxYear);
 
-        return new ResponseEntity<>(vehicles,HttpStatus.OK);
+        if(vehicle.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        else {
+            return new ResponseEntity<>(vehicle,HttpStatus.OK);
+        }
     }
+
     //get by color
     @GetMapping
-    public ResponseEntity<List<Vehicle>> getAllVehicles(){
-        List<Vehicle> vehicles = this.vehicleService.read();
+    public ResponseEntity<List<Vehicle>> getVehicleByColor (@RequestParam (value = "color")String color){
+        List<Vehicle> vehicle = this.vehicleService.byColor(color);
 
-        return new ResponseEntity<>(vehicles,HttpStatus.OK);
+        if(vehicle.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        else {
+            return new ResponseEntity<>(vehicle,HttpStatus.OK);
+        }
+
     }
+
     //get by miles
     @GetMapping
-    public ResponseEntity<List<Vehicle>> getAllVehicles(){
-        List<Vehicle> vehicles = this.vehicleService.read();
+    public ResponseEntity<List<Vehicle>> getVehicleByMiles(@RequestParam( value = "minMile",required = true) Integer minMile, @RequestParam(value = "maxMile") Integer maxMile){
+        List<Vehicle> vehicle = this.vehicleService.byMiles(minMile, maxMile);
 
-        return new ResponseEntity<>(vehicles,HttpStatus.OK);
+        if(vehicle.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        else {
+            return new ResponseEntity<>(vehicle,HttpStatus.OK);
+        }
     }
+
     //get by type
     @GetMapping
-    public ResponseEntity<List<Vehicle>> getAllVehicles(){
-        List<Vehicle> vehicles = this.vehicleService.read();
+    public ResponseEntity<List<Vehicle>> getVehicleByType (@RequestParam (value = "vehicleType")VehicleType vehicleType){
+        List<Vehicle> vehicle = this.vehicleService.byType(vehicleType);
 
-        return new ResponseEntity<>(vehicles,HttpStatus.OK);
+        if(vehicle.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        else {
+            return new ResponseEntity<>(vehicle,HttpStatus.OK);
+        }
+
     }
+
     //get by dealership id
-    @GetMapping
-    public ResponseEntity<List<Vehicle>> getAllVehicles(){
-        List<Vehicle> vehicles = this.vehicleService.read();
+    @GetMapping("/{dealership}/{id}")
+    public ResponseEntity<List<Vehicle>> getVehicleByDealershipId(@PathVariable Long id){
+        List<Vehicle> vehicle = this.vehicleService.byDealership(id);
 
-        return new ResponseEntity<>(vehicles,HttpStatus.OK);
+        if(vehicle.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        else {
+            return new ResponseEntity<>(vehicle,HttpStatus.OK);
+        }
     }
+
+
 }
