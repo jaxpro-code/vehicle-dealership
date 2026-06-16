@@ -51,11 +51,11 @@ public class Vehicle {
     private VehicleType vehicleType;
 
     @Positive(message = "Odometer must be a positive number")
-    @Column(nullable = false,length = 1000000)
+    @Column(nullable = false,length = 10)
     private int miles;
 
     @Positive(message = "Price must be a positive number")
-    @Column(nullable = false, length = 1000000)
+    @Column(nullable = false, length = 10)
     private double price;
 
     @ManyToOne
