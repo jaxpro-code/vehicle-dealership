@@ -15,6 +15,6 @@ public interface ContractRepository extends JpaRepository<Contract, Long> {
     List<Contract> findByTypeIgnoreCase(ContractType type);
 
     //by vin
-    List<Contract> findByVehicleVin(String vin);
+    List<Contract> findByVehicleVinContainingIgnoreCase(String vin);
 
 }
