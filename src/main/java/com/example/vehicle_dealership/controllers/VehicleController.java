@@ -82,7 +82,7 @@ public class VehicleController {
     }
 
     //get by price
-    @GetMapping
+    @GetMapping("/{price-range}")
     public ResponseEntity<List<Vehicle>> getVehicleByPrice(@RequestParam( value = "minPrice",required = true) Double minPrice, @RequestParam(value = "maxPrice") Double maxPrice){
         List<Vehicle> vehicle = this.vehicleService.byPrice(minPrice, maxPrice);
 
@@ -95,7 +95,7 @@ public class VehicleController {
     }
 
     //get by make
-    @GetMapping
+    @GetMapping("/{find-make}")
     public ResponseEntity<List<Vehicle>> getVehicleByMake (@RequestParam (value = "make")String make){
         List<Vehicle> vehicle = this.vehicleService.byMake(make);
 
@@ -109,7 +109,7 @@ public class VehicleController {
     }
 
     //get by model
-    @GetMapping
+    @GetMapping("/{find-model}")
     public ResponseEntity<List<Vehicle>> getVehicleByModel (@RequestParam (value = "model")String model){
         List<Vehicle> vehicle = this.vehicleService.byModel(model);
 
@@ -122,7 +122,7 @@ public class VehicleController {
 
     }
     //get by year
-    @GetMapping
+    @GetMapping("/{year-range}")
     public ResponseEntity<List<Vehicle>> getVehicleByYear(@RequestParam( value = "minYear",required = true) Integer minYear, @RequestParam(value = "maxYear") Integer maxYear){
         List<Vehicle> vehicle = this.vehicleService.byYear(minYear, maxYear);
 
@@ -135,7 +135,7 @@ public class VehicleController {
     }
 
     //get by color
-    @GetMapping
+    @GetMapping("/{find-color}")
     public ResponseEntity<List<Vehicle>> getVehicleByColor (@RequestParam (value = "color")String color){
         List<Vehicle> vehicle = this.vehicleService.byColor(color);
 
@@ -149,7 +149,7 @@ public class VehicleController {
     }
 
     //get by miles
-    @GetMapping
+    @GetMapping("/{mile-range}")
     public ResponseEntity<List<Vehicle>> getVehicleByMiles(@RequestParam( value = "minMile",required = true) Integer minMile, @RequestParam(value = "maxMile") Integer maxMile){
         List<Vehicle> vehicle = this.vehicleService.byMiles(minMile, maxMile);
 
@@ -162,7 +162,7 @@ public class VehicleController {
     }
 
     //get by type
-    @GetMapping
+    @GetMapping("/{vehicle-type}")
     public ResponseEntity<List<Vehicle>> getVehicleByType (@RequestParam (value = "vehicleType")VehicleType vehicleType){
         List<Vehicle> vehicle = this.vehicleService.byType(vehicleType);
 
