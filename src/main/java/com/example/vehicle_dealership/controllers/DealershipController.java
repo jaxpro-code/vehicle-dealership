@@ -80,7 +80,7 @@ public class DealershipController {
     }
 
     //by name
-    @GetMapping("/{find}")
+    @GetMapping("/find")
     public ResponseEntity<Dealerships> getDealershipByName (@RequestParam (value = "name")String name){
         Optional<Dealerships> dealerships = this.dealershipService.byName(name);
 

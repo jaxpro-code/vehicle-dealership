@@ -80,7 +80,7 @@ public class ContractController {
     }
 
     //by contract type
-    @GetMapping("/{by-type}")
+    @GetMapping("/by-type")
     public ResponseEntity<List<Contract>> getContractByType (@RequestParam (value = "type") ContractType type){
         List<Contract> contracts = this.contractService.byType(type);
 

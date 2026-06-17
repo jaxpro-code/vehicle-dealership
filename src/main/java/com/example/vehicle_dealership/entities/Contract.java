@@ -25,7 +25,7 @@ public class Contract {
     private String date;
 
     @ManyToOne
-    @JoinColumn(name = "vehicle_vin")
+    @JoinColumn(name = "vehicle_id")
     private Vehicle vehicle;
 
     @Enumerated(EnumType.STRING)
