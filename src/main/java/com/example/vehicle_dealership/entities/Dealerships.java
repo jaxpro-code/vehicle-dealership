@@ -1,5 +1,6 @@
 package com.example.vehicle_dealership.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -37,6 +38,7 @@ public class Dealerships {
     @Column(nullable = false,length = 18)
     private String phone;
 
-    @OneToMany(mappedBy = "dealership")
+    @OneToMany(mappedBy = "dealership",fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Vehicle> inventory;
 }

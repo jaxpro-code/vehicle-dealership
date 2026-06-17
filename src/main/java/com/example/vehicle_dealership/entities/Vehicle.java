@@ -1,11 +1,9 @@
 package com.example.vehicle_dealership.entities;
 
 import com.example.vehicle_dealership.entities.enums.VehicleType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,7 +27,8 @@ public class Vehicle {
     private String vin;
 
     @NotBlank(message = "Year is required")
-    @Size(min = 1886, max = 2028, message = "Year must be between 1886 and 2028")
+    @Min(value = 1886,message = "Year must be at least 1886")
+    @Max(value = 2028, message = "Year must be no more than 2028")
     @Column(nullable = false, length = 4)
     private int year;
 
@@ -59,10 +58,12 @@ public class Vehicle {
     private double price;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "dealership_id",nullable = false,unique = true)
+    @JoinColumn(name = "dealership_id",nullable = false)
+    @JsonIgnore
     private Dealerships dealership;
 
     @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Contract> contracts;
 }
 

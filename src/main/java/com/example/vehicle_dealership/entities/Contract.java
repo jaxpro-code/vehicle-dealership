@@ -1,6 +1,7 @@
 package com.example.vehicle_dealership.entities;
 
 import com.example.vehicle_dealership.entities.enums.ContractType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -26,6 +27,7 @@ public class Contract {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "vehicle_id")
+    @JsonIgnore
     private Vehicle vehicle;
 
     @Enumerated(EnumType.STRING)
