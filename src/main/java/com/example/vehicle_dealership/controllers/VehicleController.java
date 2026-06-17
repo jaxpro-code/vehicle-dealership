@@ -33,10 +33,10 @@ public class VehicleController {
     //get all vehicles
     @GetMapping
     public ResponseEntity<List<Vehicle>> getAllVehicles(@RequestParam( value = "minPrice",required = false) Double minPrice, @RequestParam(value = "maxPrice",required = false) Double maxPrice,
-                                                        @RequestParam (value = "make",required = false)String make,@RequestParam (value = "model")String model,
+                                                        @RequestParam (value = "make",required = false)String make,@RequestParam (value = "model", required = false)String model,
                                                         @RequestParam( value = "minYear",required = false) Integer minYear, @RequestParam(value = "maxYear",required = false) Integer maxYear,
                                                         @RequestParam (value = "color",required = false)String color,@RequestParam( value = "minMile",required = false) Integer minMile,
-                                                        @RequestParam(value = "maxMile",required = false) Integer maxMile, @RequestParam (value = "vehicleType",required = false)VehicleType vehicleType,
+                                                        @RequestParam(value = "maxMile",required = false) Integer maxMile, @RequestParam (value = "vehicleType",required = false)String vehicleType,
                                                         @RequestParam (value = "dealershipid",required = false) Long dealershipId){
         //region minPrice or maxPrice
         if(minPrice != null || maxPrice != null){

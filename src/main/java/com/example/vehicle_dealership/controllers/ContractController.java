@@ -32,10 +32,19 @@ public class ContractController {
 
     //read
     @GetMapping
-    public ResponseEntity<List<Contract>> getAllContract(){
-        List<Contract> contracts = this.contractService.read();
+    public ResponseEntity<List<Contract>> getAllContract(@RequestParam (value = "type",required = false) String type){
+        if(type != null) {
+            ContractType enumType;
+            try {
+                enumType = ContractType.valueOf(type.toString().toUpperCase());
+            } catch (IllegalArgumentException e) {
+                return new ResponseEntity<>(this.contractService.read(), HttpStatus.OK);
+            }
+            List<Contract> contracts = this.contractService.byType(enumType);
+            return new ResponseEntity<>(contracts, HttpStatus.OK);
 
-        return new ResponseEntity<>(contracts,HttpStatus.OK);
+        }
+        return new ResponseEntity<>(this.contractService.read(), HttpStatus.OK);
     }
 
     //update
@@ -79,27 +88,6 @@ public class ContractController {
 
     }
 
-    //by contract type
-    @GetMapping("/by-type")
-    public ResponseEntity<List<Contract>> getContractByType (@RequestParam (value = "type") String type){
-        ContractType enumType;
-
-        try{
-            enumType = ContractType.valueOf(type.toString().toUpperCase());
-        }
-        catch (IllegalArgumentException e){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-
-        List<Contract> contracts = this.contractService.byType(enumType);
-
-        if(contracts.isEmpty()){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        else {
-            return new ResponseEntity<>(contracts, HttpStatus.OK);
-        }
-    }
     // by vehicle vin
     //not sure how to code this, im intentionally leaving this method bare
 }

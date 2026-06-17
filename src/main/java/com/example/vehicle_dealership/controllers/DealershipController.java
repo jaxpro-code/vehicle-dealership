@@ -30,12 +30,16 @@ public class DealershipController {
         return new ResponseEntity<>(newDealership, HttpStatus.CREATED);
     }
 
-    //read
+    //read//by name
     @GetMapping
-    public ResponseEntity<List<Dealerships>> getAllDealerships(){
-        List<Dealerships> dealerships = this.dealershipService.read();
-
-        return new ResponseEntity<>(dealerships,HttpStatus.OK);
+    public ResponseEntity<Dealerships> getAllDealerships(@RequestParam (value = "name", required = false)String name){
+        if(name != null){
+            Optional<Dealerships> dealerships = this.dealershipService.byName(name);
+            return new ResponseEntity<>(dealerships.get(), HttpStatus.OK);
+        }else{
+            List<Dealerships> dealerships = this.dealershipService.read();
+            return new ResponseEntity<>((Dealerships) dealerships, HttpStatus.OK);
+        }
     }
 
     //update
@@ -79,16 +83,4 @@ public class DealershipController {
 
     }
 
-    //by name
-    @GetMapping("/find")
-    public ResponseEntity<Dealerships> getDealershipByName (@RequestParam (value = "name")String name){
-        Optional<Dealerships> dealerships = this.dealershipService.byName(name);
-
-        if(dealerships.isPresent()){
-            return new ResponseEntity<>(dealerships.get(), HttpStatus.OK);
-        }
-        else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
 }
