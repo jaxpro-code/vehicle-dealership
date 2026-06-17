@@ -1,0 +1,552 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: vehicle testing
+meta:
+  id: wrk_7e8fe4faf8a64f58877d4e1522223318
+  created: 1781632363989
+  modified: 1781698562714
+  description: ""
+collection:
+  - name: Contract Testting
+    meta:
+      id: fld_77e88730c8f443559a062a35fe2432eb
+      created: 1781698674749
+      modified: 1781698794187
+      sortKey: -1781698674749
+      description: ""
+    children:
+      - url: http://localhost:8080/api/contracts/by-type?type=sales
+        name: "Contract by type - unknown error "
+        meta:
+          id: req_9dfdb0347ba349bdb6c58493e493558d
+          created: 1781698787656
+          modified: 1781699699631
+          isPrivate: false
+          description: ""
+          sortKey: -1781698787656
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/api/contracts/15
+        name: "Contract by id -- unkown error "
+        meta:
+          id: req_dfcba2cba2104b5abbb4dbf920c15c90
+          created: 1781698795057
+          modified: 1781699550205
+          isPrivate: false
+          description: ""
+          sortKey: -1781698795057
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/api/contracts
+        name: All Contracts
+        meta:
+          id: req_6d1acafe32574a37a93a236f6ac0780b
+          created: 1781698797413
+          modified: 1781699375314
+          isPrivate: false
+          description: ""
+          sortKey: -1781698797413
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Dealership Testing
+    meta:
+      id: fld_192595b1058c44d5bc6eb62877bfebaa
+      created: 1781698689892
+      modified: 1781698689892
+      sortKey: -1781698689892
+      description: ""
+    children:
+      - url: ""
+        name: New Request
+        meta:
+          id: req_7632e746ce3248e18fdebd0d5a9e7660
+          created: 1781698736244
+          modified: 1781698736244
+          isPrivate: false
+          description: ""
+          sortKey: -1781698736244
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: ""
+        name: New Request
+        meta:
+          id: req_1b14f580cc794c0eaf756aa1db87f3f7
+          created: 1781698738968
+          modified: 1781698738968
+          isPrivate: false
+          description: ""
+          sortKey: -1781698738968
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: ""
+        name: New Request
+        meta:
+          id: req_2a01b2ffabda40278c4c4505f0a1966d
+          created: 1781698745588
+          modified: 1781698745588
+          isPrivate: false
+          description: ""
+          sortKey: -1781698745588
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: ""
+        name: New Request
+        meta:
+          id: req_c2f372b12eab47cc968e4c4f1098842c
+          created: 1781698747671
+          modified: 1781698747671
+          isPrivate: false
+          description: ""
+          sortKey: -1781698747671
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: ""
+        name: New Request
+        meta:
+          id: req_693ba7a6d39449c78fde75e59750016d
+          created: 1781698749312
+          modified: 1781698749312
+          isPrivate: false
+          description: ""
+          sortKey: -1781698749312
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: ""
+        name: New Request
+        meta:
+          id: req_9f676ee266be426699a0d52a3e7c9e56
+          created: 1781698751074
+          modified: 1781698751074
+          isPrivate: false
+          description: ""
+          sortKey: -1781698751074
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Vehicle Testing
+    meta:
+      id: fld_e92ab75bf28748c9a048f96abcff1f1b
+      created: 1781698704980
+      modified: 1781698935592
+      sortKey: -1781698704980
+      description: ""
+    children:
+      - url: ""
+        name: New Request
+        meta:
+          id: req_ba6114fc4fec475d88ffebb688acc2c7
+          created: 1781698889648
+          modified: 1781698889648
+          isPrivate: false
+          description: ""
+          sortKey: -1781698889648
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: ""
+        name: New Request
+        meta:
+          id: req_cc41b214199a43b9ad059f0e0e114c64
+          created: 1781698891351
+          modified: 1781698891351
+          isPrivate: false
+          description: ""
+          sortKey: -1781698891351
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: ""
+        name: New Request
+        meta:
+          id: req_6063ddb4c1614d50b40e9ac4d3c9f2ec
+          created: 1781698893196
+          modified: 1781698893196
+          isPrivate: false
+          description: ""
+          sortKey: -1781698893196
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: ""
+        name: New Request
+        meta:
+          id: req_a88a37268ca84b6f907a98f9cbc6a519
+          created: 1781698894985
+          modified: 1781698894985
+          isPrivate: false
+          description: ""
+          sortKey: -1781698894985
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: ""
+        name: New Request
+        meta:
+          id: req_821bd55f04db406bb01f2bd04950cb6b
+          created: 1781698897401
+          modified: 1781698897401
+          isPrivate: false
+          description: ""
+          sortKey: -1781698897401
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: ""
+        name: New Request
+        meta:
+          id: req_90cf14ea3dff40f887b98a19b901f569
+          created: 1781698899275
+          modified: 1781698899275
+          isPrivate: false
+          description: ""
+          sortKey: -1781698899275
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: ""
+        name: New Request
+        meta:
+          id: req_d1c40f6d08ad4471875fe3c910a8f355
+          created: 1781698901535
+          modified: 1781698901535
+          isPrivate: false
+          description: ""
+          sortKey: -1781698901535
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: ""
+        name: New Request
+        meta:
+          id: req_4600dddfd9304229a64ca09c2ff022cd
+          created: 1781698903038
+          modified: 1781698903038
+          isPrivate: false
+          description: ""
+          sortKey: -1781698903038
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: ""
+        name: New Request
+        meta:
+          id: req_2547daed27ad4ccf8f45a3d97c35f776
+          created: 1781698904750
+          modified: 1781698904750
+          isPrivate: false
+          description: ""
+          sortKey: -1781698904750
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: ""
+        name: New Request
+        meta:
+          id: req_dc6b3f6f415547ee85defecac80e094b
+          created: 1781698906224
+          modified: 1781698906224
+          isPrivate: false
+          description: ""
+          sortKey: -1781698906224
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: ""
+        name: New Request
+        meta:
+          id: req_51efed0dcc6b4a088123ec6e47aaa311
+          created: 1781698907660
+          modified: 1781698907660
+          isPrivate: false
+          description: ""
+          sortKey: -1781698907660
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: ""
+        name: New Request
+        meta:
+          id: req_613fe984b4da406996f9f36c6ba7437e
+          created: 1781698909247
+          modified: 1781698909247
+          isPrivate: false
+          description: ""
+          sortKey: -1781698909247
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: ""
+        name: New Request
+        meta:
+          id: req_9b9ff1ada6c044ada2e10d9bb0402f59
+          created: 1781698910461
+          modified: 1781698910461
+          isPrivate: false
+          description: ""
+          sortKey: -1781698910461
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_d9868fbbe660a3f12c9c00d8daadfbc36828c900
+    created: 1781632364000
+    modified: 1781632364000
+environments:
+  name: Base Environment
+  meta:
+    id: env_d9868fbbe660a3f12c9c00d8daadfbc36828c900
+    created: 1781632363999
+    modified: 1781632363999
+    isPrivate: false
