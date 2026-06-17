@@ -31,68 +31,28 @@ public class VehicleController {
     }
 
     //get all vehicles
-    //confirmed
     @GetMapping
-    public ResponseEntity<List<Vehicle>> getAllVehicles(){
-        List<Vehicle> vehicles = this.vehicleService.read();
-
-        return new ResponseEntity<>(vehicles,HttpStatus.OK);
-    }
-
-    //put update vehicle
-    @PutMapping("/{id}")
-    public ResponseEntity<Vehicle> updateVehicle(@RequestBody @Valid Vehicle vehicle, @PathVariable Long id){
-        Vehicle updatedVehicle = this.vehicleService.update(id,vehicle);
-
-        if(updatedVehicle == null){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    public ResponseEntity<List<Vehicle>> getAllVehicles(@RequestParam( value = "minPrice",required = false) Double minPrice, @RequestParam(value = "maxPrice",required = false) Double maxPrice){
+        //region minPrice
+        if(minPrice == null){
+            List<Vehicle> vehicles = this.vehicleService.read();
+            return new ResponseEntity<>(vehicles,HttpStatus.OK);
         }
         else{
-            return new ResponseEntity<>(updatedVehicle, HttpStatus.OK);
-        }
-    }
-
-    //delete by id
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteVehicle(@PathVariable Long id){
-        Boolean deleteSuccessful = this.vehicleService.delete(id);
-
-        if(!deleteSuccessful){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        else{
-            //successful deletes do not return 200, they return 204 no content
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-    }
-
-    //get by id
-    @GetMapping("/{id}")
-    public ResponseEntity<Vehicle> getVehicleById(@PathVariable Long id){
-        Optional<Vehicle> vehicle = this.vehicleService.byId(id);
-
-        //either there is a vehicle with this is or there is not
-        if(vehicle.isPresent()){
-            return new ResponseEntity<>(vehicle.get(), HttpStatus.OK);
-        }
-        else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-
-    }
-
-    //get by price
-    @GetMapping("/price-range")
-    public ResponseEntity<List<Vehicle>> getVehicleByPrice(@RequestParam( value = "minPrice",required = true) Double minPrice, @RequestParam(value = "maxPrice") Double maxPrice){
-        List<Vehicle> vehicle = this.vehicleService.byPrice(minPrice, maxPrice);
-
-        if(vehicle.isEmpty()){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        else {
+            List<Vehicle> vehicle = this.vehicleService.byPrice(minPrice, maxPrice);
             return new ResponseEntity<>(vehicle,HttpStatus.OK);
         }
+        //endregion
+
+
+
+
+
+
+
     }
+
+
 
     //get by make
     @GetMapping("/find-make")
@@ -188,5 +148,47 @@ public class VehicleController {
         }
     }
 
+
+    //put update vehicle
+    @PutMapping("/{id}")
+    public ResponseEntity<Vehicle> updateVehicle(@RequestBody @Valid Vehicle vehicle, @PathVariable Long id){
+        Vehicle updatedVehicle = this.vehicleService.update(id,vehicle);
+
+        if(updatedVehicle == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        else{
+            return new ResponseEntity<>(updatedVehicle, HttpStatus.OK);
+        }
+    }
+
+    //delete by id
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteVehicle(@PathVariable Long id){
+        Boolean deleteSuccessful = this.vehicleService.delete(id);
+
+        if(!deleteSuccessful){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        else{
+            //successful deletes do not return 200, they return 204 no content
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+    }
+
+    //get by id
+    @GetMapping("/{id}")
+    public ResponseEntity<Vehicle> getVehicleById(@PathVariable Long id){
+        Optional<Vehicle> vehicle = this.vehicleService.byId(id);
+
+        //either there is a vehicle with this is or there is not
+        if(vehicle.isPresent()){
+            return new ResponseEntity<>(vehicle.get(), HttpStatus.OK);
+        }
+        else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+    }
 
 }

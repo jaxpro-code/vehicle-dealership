@@ -113,7 +113,7 @@ public class VehicleService {
 
     //by type
     public List<Vehicle> byType(VehicleType type){
-        List<Vehicle> vehicles = vehicleRepository.findByVehicleTypeIgnoreCase(type);
+        List<Vehicle> vehicles = vehicleRepository.findByVehicleType(type);
 
         return vehicles;
     }

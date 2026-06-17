@@ -31,7 +31,7 @@ public interface VehicleRepository extends JpaRepository<Vehicle, Long> {
     List<Vehicle> findByMilesBetween(Integer min, Integer max);
 
     //by vehicleType
-    List<Vehicle> findByVehicleTypeIgnoreCase(VehicleType vehicleType);
+    List<Vehicle> findByVehicleType(VehicleType vehicleType);
 
     //by dealership
     List<Vehicle> findByDealershipId(Long id);

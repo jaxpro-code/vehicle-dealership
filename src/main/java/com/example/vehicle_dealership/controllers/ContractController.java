@@ -81,7 +81,7 @@ public class ContractController {
 
     //by contract type
     @GetMapping("/by-type")
-    public ResponseEntity<List<Contract>> getContractByType (@RequestParam (value = "type") ContractType type){
+    public ResponseEntity<List<Contract>> getContractByType (@RequestParam (value = "type") String type){
         ContractType enumType;
 
         try{
