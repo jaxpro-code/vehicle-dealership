@@ -32,120 +32,91 @@ public class VehicleController {
 
     //get all vehicles
     @GetMapping
-    public ResponseEntity<List<Vehicle>> getAllVehicles(@RequestParam( value = "minPrice",required = false) Double minPrice, @RequestParam(value = "maxPrice",required = false) Double maxPrice){
-        //region minPrice
-        if(minPrice == null){
-            List<Vehicle> vehicles = this.vehicleService.read();
-            return new ResponseEntity<>(vehicles,HttpStatus.OK);
-        }
-        else{
+    public ResponseEntity<List<Vehicle>> getAllVehicles(@RequestParam( value = "minPrice",required = false) Double minPrice, @RequestParam(value = "maxPrice",required = false) Double maxPrice,
+                                                        @RequestParam (value = "make",required = false)String make,@RequestParam (value = "model")String model,
+                                                        @RequestParam( value = "minYear",required = false) Integer minYear, @RequestParam(value = "maxYear",required = false) Integer maxYear,
+                                                        @RequestParam (value = "color",required = false)String color,@RequestParam( value = "minMile",required = false) Integer minMile,
+                                                        @RequestParam(value = "maxMile",required = false) Integer maxMile, @RequestParam (value = "vehicleType",required = false)VehicleType vehicleType,
+                                                        @RequestParam (value = "dealershipid",required = false) Long dealershipId){
+        //region minPrice or maxPrice
+        if(minPrice != null || maxPrice != null){
+            if(minPrice == null){
+                minPrice = 0.0;
+            }
+            if(maxPrice == null){
+                maxPrice = Double.MAX_VALUE;
+            }
             List<Vehicle> vehicle = this.vehicleService.byPrice(minPrice, maxPrice);
             return new ResponseEntity<>(vehicle,HttpStatus.OK);
         }
         //endregion
-
-
-
-
-
-
-
-    }
-
-
-
-    //get by make
-    @GetMapping("/find-make")
-    public ResponseEntity<List<Vehicle>> getVehicleByMake (@RequestParam (value = "make")String make){
-        List<Vehicle> vehicle = this.vehicleService.byMake(make);
-
-        if(vehicle.isEmpty()){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        else {
+        //region byMake
+        if(make != null){
+            List<Vehicle> vehicle = this.vehicleService.byMake(make);
             return new ResponseEntity<>(vehicle,HttpStatus.OK);
         }
-
-    }
-
-    //get by model
-    @GetMapping("/find-model")
-    public ResponseEntity<List<Vehicle>> getVehicleByModel (@RequestParam (value = "model")String model){
-        List<Vehicle> vehicle = this.vehicleService.byModel(model);
-
-        if(vehicle.isEmpty()){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        else {
+        //endregion
+        //region byModel
+        if(model != null){
+            List<Vehicle> vehicle = this.vehicleService.byModel(model);
             return new ResponseEntity<>(vehicle,HttpStatus.OK);
         }
-
-    }
-    //get by year
-    @GetMapping("/year-range")
-    public ResponseEntity<List<Vehicle>> getVehicleByYear(@RequestParam( value = "minYear",required = true) Integer minYear, @RequestParam(value = "maxYear") Integer maxYear){
-        List<Vehicle> vehicle = this.vehicleService.byYear(minYear, maxYear);
-
-        if(vehicle.isEmpty()){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        else {
+        //endregion
+        //region byYear
+        if(minYear != null || maxYear != null){
+            if(minYear == null){
+                minYear = 1886;
+            }
+            if(maxYear == null){
+                maxYear = 2028;
+            }
+            List<Vehicle> vehicle = this.vehicleService.byYear(minYear, maxYear);
             return new ResponseEntity<>(vehicle,HttpStatus.OK);
         }
-    }
-
-    //get by color
-    @GetMapping("/find-color")
-    public ResponseEntity<List<Vehicle>> getVehicleByColor (@RequestParam (value = "color")String color){
-        List<Vehicle> vehicle = this.vehicleService.byColor(color);
-
-        if(vehicle.isEmpty()){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        else {
+        //endregion
+        //region byColor
+        if(color != null){
+            List<Vehicle> vehicle = this.vehicleService.byColor(color);
             return new ResponseEntity<>(vehicle,HttpStatus.OK);
         }
-
-    }
-
-    //get by miles
-    @GetMapping("/mile-range")
-    public ResponseEntity<List<Vehicle>> getVehicleByMiles(@RequestParam( value = "minMile",required = true) Integer minMile, @RequestParam(value = "maxMile") Integer maxMile){
-        List<Vehicle> vehicle = this.vehicleService.byMiles(minMile, maxMile);
-
-        if(vehicle.isEmpty()){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        else {
+        //endregion
+        //region byMiles
+        if(minMile != null || maxMile != null){
+            if(minMile == null){
+                minMile = 0;
+            }
+            if(maxMile == null){
+                maxMile = Integer.MAX_VALUE;
+            }
+            List<Vehicle> vehicle = this.vehicleService.byMiles(minMile, maxMile);
             return new ResponseEntity<>(vehicle,HttpStatus.OK);
         }
-    }
-
-    //get by type
-    @GetMapping("/vehicle-type")
-    public ResponseEntity<List<Vehicle>> getVehicleByType (@RequestParam (value = "vehicleType")VehicleType vehicleType){
-        List<Vehicle> vehicle = this.vehicleService.byType(vehicleType);
-
-        if(vehicle.isEmpty()){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        else {
+        //endregion
+        //region byType
+        if(vehicleType != null){
+            VehicleType typeEnum;
+            try {
+                typeEnum = VehicleType.valueOf(vehicleType.toString().toUpperCase());
+            } catch (IllegalArgumentException e) {
+                List<Vehicle> allVehicles = this.vehicleService.read();
+                return new ResponseEntity<>(allVehicles, HttpStatus.OK);
+            }
+            List<Vehicle> vehicle = this.vehicleService.byType(typeEnum);
             return new ResponseEntity<>(vehicle,HttpStatus.OK);
         }
-
-    }
-
-    //get by dealership id
-    @GetMapping("/dealership/{id}")
-    public ResponseEntity<List<Vehicle>> getVehicleByDealershipId(@PathVariable Long id){
-        List<Vehicle> vehicle = this.vehicleService.byDealership(id);
-
-        if(vehicle.isEmpty()){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        else {
+        //endregion
+        //region ByDealershipId
+        if(dealershipId != null){
+            List<Vehicle> vehicle = this.vehicleService.byDealership(dealershipId);
             return new ResponseEntity<>(vehicle,HttpStatus.OK);
         }
+        //endregion
+        //region AllVehicles
+        else{
+            List<Vehicle> vehicles = this.vehicleService.read();
+            return new ResponseEntity<>(vehicles,HttpStatus.OK);
+        }
+        //endregion
     }
 
 
